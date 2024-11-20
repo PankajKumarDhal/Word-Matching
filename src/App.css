@@ -1,0 +1,117 @@
+.app {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  margin: 20px;
+}
+
+.word {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.word.matched {
+  background-color: #4caf50;
+  color: white;
+  pointer-events: none;
+}
+
+.word.selected {
+  background-color: #ff9800;
+  color: white;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+.config-panel {
+  margin-bottom: 20px;
+}
+
+.config-panel label {
+  margin-right: 10px;
+}
+
+.config-panel select {
+  margin-right: 20px;
+}
+
+.word {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.word.matched {
+  background-color: #4caf50;
+  color: white;
+  pointer-events: none;
+}
+
+.word.selected {
+  background-color: #ff9800;
+  color: white;
+}
+
+button:hover {
+  background: #74b9ff;
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(1);
+}
+
+/* General button styles */
+button {
+  background-color: #0984e3; /* Primary blue color */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover state for buttons */
+button:hover {
+  background-color: #74b9ff; /* Lighter blue */
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Active (pressed) state for buttons */
+button:active {
+  background-color: #0066cc; /* Darker blue */
+  transform: translateY(0); /* Reset lift effect */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Disabled button styles */
+button:disabled {
+  background-color: #b2bec3; /* Light gray */
+  color: #ffffff; /* White text */
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+/* Adding margin for spacing between buttons */
+button + button {
+  margin-left: 10px;
+}
