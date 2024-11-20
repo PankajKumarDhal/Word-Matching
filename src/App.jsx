@@ -112,6 +112,11 @@
 //   );
 // };
 
+// export default App;
+
+
+
+
 import React, { useState, useEffect } from "react";
 import ConfigPanel from "./ConfigPanel";
 import "./App.css";
@@ -135,6 +140,7 @@ const App = () => {
   const [attempts, setAttempts] = useState(0);
   const [gridColumns, setGridColumns] = useState(4);
   const [itemCount, setItemCount] = useState(8);
+  const [incorrectWords, setIncorrectWords] = useState([]);
 
   useEffect(() => {
     // Shuffle and adjust items on config changes
@@ -143,6 +149,7 @@ const App = () => {
     setMatchedPairs([]);
     setSelected([]);
     setAttempts(0);
+    setIncorrectWords([]);
   }, [itemCount]);
 
   const handleWordClick = (word) => {
@@ -159,7 +166,7 @@ const App = () => {
       );
 
       if (pair) {
-        // Correct match: Add to matched pairs and remove from the grid
+        // Correct match: Add to matched pairs and remove the pair from the grid
         setMatchedPairs((prev) => [...prev, pair.word1, pair.word2]);
 
         setTimeout(() => {
@@ -170,29 +177,19 @@ const App = () => {
           );
         }, 500); // Delay removal to show green feedback
       } else {
-        // Incorrect match: Set both words to red temporarily
-        setWords((prevWords) => 
-          prevWords.map((w) => 
-            w.word1 === word || w.word2 === word || w.word1 === firstWord || w.word2 === firstWord
-              ? { ...w, status: 'not-matched' }
-              : w
-          )
-        );
+        // Incorrect match: Track incorrect words
+        setIncorrectWords((prev) => [...prev, firstWord, word]);
 
-        // After delay, reset the selected words
+        // Reset the incorrect words after 1 second (1000 ms)
         setTimeout(() => {
-          setSelected([]); // Clear selection
-          // Reset the status of the words that didn't match
-          setWords((prevWords) =>
-            prevWords.map((w) => ({
-              ...w,
-              status: w.status === 'not-matched' ? null : w.status, // Remove the red color after reset
-            }))
-          );
-        }, 500);
+          setIncorrectWords((prev) => prev.filter((w) => ![firstWord, word].includes(w)));
+        }, 1000);
       }
+
+      // Clear selection after a short delay
+      setTimeout(() => setSelected([]), 500);
     } else {
-      // First word selected
+      // First selection
       setSelected([word]);
     }
   };
@@ -201,13 +198,14 @@ const App = () => {
     setMatchedPairs([]);
     setSelected([]);
     setAttempts(0);
+    setIncorrectWords([]);
     const shuffledWords = [...defaultWords].sort(() => Math.random() - 0.5);
     setWords(shuffledWords.slice(0, itemCount / 2));
   };
 
   return (
     <div className="app">
-      <h1>Word Matching</h1>
+      <h1>Word matching</h1>
       <ConfigPanel
         setItemCount={setItemCount}
         setGridColumns={setGridColumns}
@@ -227,8 +225,10 @@ const App = () => {
                   ? "matched"
                   : selected.includes(word)
                   ? "selected"
+                  : incorrectWords.includes(word)
+                  ? "incorrect"
                   : ""
-              } ${words.find(w => w.word1 === word || w.word2 === word)?.status || ''}`}
+              }`}
               onClick={() => handleWordClick(word)}
             >
               {word}

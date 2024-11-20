@@ -1,4 +1,4 @@
-.app {
+/* .app {
   font-family: Arial, sans-serif;
   text-align: center;
 }
@@ -8,8 +8,95 @@
   gap: 10px;
   margin: 20px;
 }
+.controls {
+  margin-top: 20px;
+}
 
-.word {
+.config-panel {
+  margin-bottom: 20px;
+}
+
+.config-panel label {
+  margin-right: 10px;
+}
+
+.config-panel select {
+  margin-right: 20px;
+}
+
+button:hover {
+  background: #74b9ff;
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(1);
+}
+
+button {
+  background-color: #0984e3;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #74b9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  background-color: #0066cc;
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled {
+  background-color: #b2bec3;
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+button + button {
+  margin-left: 10px;
+} */
+
+/* .word {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.word.selected {
+  background-color: #2196f3;
+  color: white;
+}
+
+.word.matched {
+  background-color: #4caf50; 
+  color: white;
+  pointer-events: none; 
+}
+
+.word.incorrect {
+  background-color: #e74c3c; 
+  color: white;
+  pointer-events: none; 
+} */
+
+/* .word {
   padding: 20px;
   background-color: #f0f0f0;
   border: 2px solid #ddd;
@@ -27,6 +114,18 @@
 .word.selected {
   background-color: #ff9800;
   color: white;
+} */
+
+
+.app {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  margin: 20px;
 }
 
 .controls {
@@ -54,15 +153,21 @@
   transition: 0.3s;
 }
 
-.word.matched {
-  background-color: #4caf50;
+.word.selected {
+  background-color: #2196f3; /* Blue for selected word */
   color: white;
-  pointer-events: none;
 }
 
-.word.selected {
-  background-color: #ff9800;
+.word.matched {
+  background-color: #4caf50; /* Green for matched words */
   color: white;
+  pointer-events: none; /* Prevent further interaction */
+}
+
+.word.incorrect {
+  background-color: #e74c3c; /* Red for incorrect match */
+  color: white;
+  pointer-events: none; /* Prevent further interaction */
 }
 
 button:hover {
@@ -74,9 +179,8 @@ button:active {
   transform: scale(1);
 }
 
-/* General button styles */
 button {
-  background-color: #0984e3; /* Primary blue color */
+  background-color: #0984e3;
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -88,30 +192,26 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Hover state for buttons */
 button:hover {
-  background-color: #74b9ff; /* Lighter blue */
-  transform: translateY(-2px); /* Slight lift effect */
+  background-color: #74b9ff;
+  transform: translateY(-2px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Active (pressed) state for buttons */
 button:active {
-  background-color: #0066cc; /* Darker blue */
-  transform: translateY(0); /* Reset lift effect */
+  background-color: #0066cc;
+  transform: translateY(0);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Disabled button styles */
 button:disabled {
-  background-color: #b2bec3; /* Light gray */
-  color: #ffffff; /* White text */
+  background-color: #b2bec3;
+  color: #ffffff;
   cursor: not-allowed;
   opacity: 0.6;
   box-shadow: none;
 }
 
-/* Adding margin for spacing between buttons */
 button + button {
   margin-left: 10px;
 }
